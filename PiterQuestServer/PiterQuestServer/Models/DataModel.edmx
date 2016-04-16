@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuestDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="PointID" />
+          </Key>
+          <Property Name="PointID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestID" Type="int" Nullable="false" />
+          <Property Name="HintText" Type="varchar" MaxLength="255" />
+          <Property Name="Answer" Type="varchar" MaxLength="255" />
+          <Property Name="HintImageUrl" Type="varchar" MaxLength="255" />
+          <Property Name="TaskImageUrl" Type="varchar" MaxLength="255" />
+          <Property Name="TaskText" Type="varchar" MaxLength="255" />
+          <Property Name="HasLocationHint" Type="bit" />
+          <Property Name="X" Type="varchar" MaxLength="255" />
+          <Property Name="Y" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Quest">
+          <Key>
+            <PropertyRef Name="QuestID" />
+          </Key>
+          <Property Name="QuestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Desription" Type="varchar" MaxLength="255" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Point__QuestID__34C8D9D1">
+          <End Role="Quest" Type="Self.Quest" Multiplicity="1" />
+          <End Role="Point" Type="Self.Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quest">
+              <PropertyRef Name="QuestID" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="QuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuestDBModelStoreContainer">
+          <EntitySet Name="Point" EntityType="Self.Point" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quest" EntityType="Self.Quest" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Point__QuestID__34C8D9D1" Association="Self.FK__Point__QuestID__34C8D9D1">
+            <End Role="Quest" EntitySet="Quest" />
+            <End Role="Point" EntitySet="Point" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuestDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="PointID" />
+          </Key>
+          <Property Name="PointID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestID" Type="Int32" Nullable="false" />
+          <Property Name="HintText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HintImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TaskImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TaskText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HasLocationHint" Type="Boolean" />
+          <Property Name="X" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Y" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Quest" Relationship="Self.FK__Point__QuestID__34C8D9D1" FromRole="Point" ToRole="Quest" />
+        </EntityType>
+        <EntityType Name="Quest">
+          <Key>
+            <PropertyRef Name="QuestID" />
+          </Key>
+          <Property Name="QuestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Desription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Points" Relationship="Self.FK__Point__QuestID__34C8D9D1" FromRole="Quest" ToRole="Point" />
+        </EntityType>
+        <Association Name="FK__Point__QuestID__34C8D9D1">
+          <End Role="Quest" Type="Self.Quest" Multiplicity="1" />
+          <End Role="Point" Type="Self.Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quest">
+              <PropertyRef Name="QuestID" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="QuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuestDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Points" EntityType="Self.Point" />
+          <EntitySet Name="Quests" EntityType="Self.Quest" />
+          <AssociationSet Name="FK__Point__QuestID__34C8D9D1" Association="Self.FK__Point__QuestID__34C8D9D1">
+            <End Role="Quest" EntitySet="Quests" />
+            <End Role="Point" EntitySet="Points" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuestDBModelStoreContainer" CdmEntityContainer="QuestDBEntities1">
+          <EntitySetMapping Name="Points">
+            <EntityTypeMapping TypeName="QuestDBModel.Point">
+              <MappingFragment StoreEntitySet="Point">
+                <ScalarProperty Name="PointID" ColumnName="PointID" />
+                <ScalarProperty Name="QuestID" ColumnName="QuestID" />
+                <ScalarProperty Name="HintText" ColumnName="HintText" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="HintImageUrl" ColumnName="HintImageUrl" />
+                <ScalarProperty Name="TaskImageUrl" ColumnName="TaskImageUrl" />
+                <ScalarProperty Name="TaskText" ColumnName="TaskText" />
+                <ScalarProperty Name="HasLocationHint" ColumnName="HasLocationHint" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quests">
+            <EntityTypeMapping TypeName="QuestDBModel.Quest">
+              <MappingFragment StoreEntitySet="Quest">
+                <ScalarProperty Name="QuestID" ColumnName="QuestID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desription" ColumnName="Desription" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

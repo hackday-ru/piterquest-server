@@ -1,0 +1,22 @@
+﻿@using Quests.Models
+@model dynamic
+
+@{
+    var quests = ViewBag.quests as IEnumerable<Quest>;
+}
+
+@{
+    foreach (var quest in quests)
+    {
+
+            <td>@quest.QuestID</td>
+            <td>@quest.Name</td>
+            <td>@quest.Desription</td>
+        <td>@quest.ImageUrl</td>
+        <br>
+    }
+}
+
+<script>
+    alert('@quests.First().Name');
+</script>
