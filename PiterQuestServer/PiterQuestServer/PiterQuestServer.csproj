@@ -216,6 +216,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="scripts\material.min.js.map" />
     <Content Include="scripts\jquery-2.2.3.min.map" />
+    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Home\createPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
