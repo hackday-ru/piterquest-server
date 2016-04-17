@@ -1,22 +1,65 @@
-﻿@using Quests.Models
-@model dynamic
+﻿@model dynamic
 
-@{
-    var quests = ViewBag.quests as IEnumerable<Quest>;
+<head>
+    <link href="~/Content/material.css" rel="stylesheet" />
+    <link href="~/Content/material.min.css" rel="stylesheet" />
+    <script src="~/scripts/material.js"></script>
+    <script src="~/scripts/material.min.js"></script>
+    <script src="~/scripts/jquery-2.2.3.js"></script>
+</head>
+
+<style>
+    .mdl-layout {
+	align-items: center;
+  justify-content: center;
 }
-
-@{
-    foreach (var quest in quests)
-    {
-
-            <td>@quest.QuestID</td>
-            <td>@quest.Name</td>
-            <td>@quest.Desription</td>
-        <td>@quest.ImageUrl</td>
-        <br>
-    }
+.mdl-layout__content {
+	padding: 24px;
+	flex: none;
 }
+</style>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+        <main class="mdl-layout__content">
+            <div class="mdl-card mdl-shadow--6dp">
+                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+                    <h2 class="mdl-card__title-text">Sign in</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="username" />
+                            <label class="mdl-textfield__label" for="username">Username</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="password" id="userpass" />
+                            <label class="mdl-textfield__label" for="userpass">Password</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btnSignIn">Log in</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
 
 <script>
-    alert('@quests.First().Name');
-</script>
+    $("#btnSignIn").click(function () {
+        var login = $("#username").val();
+        var password = $("#userpass").val();
+
+        $.ajax({
+            url: '@Url.Action("Login", "Home")',
+            data: { login: login + '', password: password + '' }
+        }).done(function (data) {
+            if (data + '' == 'true')
+                alert('success');
+            else
+                alert('failed');
+        });
+    });
+    </script>
