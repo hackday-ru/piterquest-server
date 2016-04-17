@@ -14,6 +14,11 @@ namespace Quests.Controllers
       context = new QuestDBEntities1();
     }
 
+    public ActionResult createQuestPage()
+    {
+      return View();
+    }
+
     // GET: Home
     public ActionResult Index()
     {

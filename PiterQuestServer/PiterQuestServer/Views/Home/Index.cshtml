@@ -57,7 +57,7 @@
             data: { login: login + '', password: password + '' }
         }).done(function (data) {
             if (data + '' == 'true')
-                alert('success');
+                document.location = '@Url.Action("createQuestPage", "Home")'
             else
                 alert('failed');
         });
