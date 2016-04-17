@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
 </head>
 
+
+<style>
+    ::-webkit-input-placeholder {
+        color: #585858;
+    }
+
+    ::-moz-placeholder {
+        color: #585858;
+    }
+
+    :-moz-placeholder {
+        color: #585858;
+    }
+
+    :-ms-input-placeholder {
+        color: #585858;
+    }
+</style>
+
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
@@ -31,8 +50,14 @@
                         width: 650px;
                     }
                 </style>
+
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--6-col">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width : 400; margin-top : -20;">
+                            <input class="mdl-textfield__input" type="text" id="inputQuest" placeholder="Quest Name">
+                            <label class="mdl-textfield__label" for="sample2"></label>
+                        </div>
+
                         <ul id="questList" class="demo-list-three mdl-list" style="margin-top : 20; margin-left : 20;"></ul>
                         <div style="margin-left : 75;">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width : 400">
@@ -80,9 +105,7 @@
                         <div class="mdl-grid">
 
                             <div class="mdl-cell mdl-cel--6-col">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style=" width
-                                        100; margin-left
-                                        40;" id="btnCreate" onclick="removeAllElems();">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="width:150 ; margin-left : 40" id="btnCreate" onclick="removeAllElems();">
                                     Create QUEST
                                 </button>
                             </div>
@@ -172,11 +195,9 @@ $("button" ).each(function() {
 		$("#inputCoor2").val("");
 		var id = new Date().getTime();
 		generate(id, name, description, url);
+		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
 	}
-
-
-
 
 </script>
 </html>
